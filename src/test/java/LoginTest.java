@@ -1,6 +1,3 @@
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -11,8 +8,6 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void addProductToCartTest() {
-        driver = new ChromeDriver();
-        driver.get(Constants.URL);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeUserName(Constants.USERNAME);
         loginPage.typePassword(Constants.PASSWORD);
