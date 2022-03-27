@@ -1,4 +1,6 @@
+import models.User;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.LoginPage;
@@ -6,12 +8,10 @@ import pages.ProductListPage;
 
 public class LoginTest extends BaseTest{
 
-    @Test
-    public void addProductToCartTest() {
+    @Test(dataProvider = "getUsers")
+    public void addProductToCartTest(User user) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeUserName(Constants.USERNAME);
-        loginPage.typePassword(Constants.PASSWORD);
-        loginPage.clickSubmitButton();
+        loginPage.logIn(user);
 
         ProductListPage productListPage = new ProductListPage(driver);
         productListPage.clickAddToCartButton();
@@ -21,5 +21,15 @@ public class LoginTest extends BaseTest{
 
         Assert.assertEquals(cartPage.getItemNameInCart(), "Sauce Labs Backpack");
         Assert.assertEquals(cartPage.getItemPriceInCart(), "$29.99");
+    }
+
+    @DataProvider(name = "getUsers")
+    public Object[][] getUsers() {
+        return new Object[][] {
+            {User.builder().username(Constants.STANDARD_USER).password(Constants.PASSWORD).build()},
+            {User.builder().username(Constants.PROBLEM_USER).password(Constants.PASSWORD).build()},
+            {User.builder().username(Constants.LOCKED_OUT_USER).password(Constants.PASSWORD).build()},
+            {User.builder().username(Constants.PERFORMANCE_GLITCH_USER).password(Constants.PASSWORD).build()},
+        };
     }
 }

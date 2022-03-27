@@ -1,6 +1,8 @@
 package pages;
 
+import models.User;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
@@ -13,15 +15,35 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void typeUserName(String userName) {
+    @Override
+    public BasePage isPageLoaded() {
+        try {
+            driver.findElement(loginButton);
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("login page not opened");
+        }
+        return this;
+    }
+
+    public LoginPage typeUserName(String userName) {
         driver.findElement(userNameInput).sendKeys(userName);
+        return this;
     }
 
-    public void typePassword(String password) {
+    public LoginPage typePassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
+        return this;
     }
 
-    public void clickSubmitButton() {
+    public ProductListPage clickSubmitButton() {
         driver.findElement(loginButton).click();
+        return new ProductListPage(driver);
+    }
+
+    public ProductListPage logIn(User user) {
+        typeUserName(user.getUsername());
+        typePassword(user.getPassword());
+        clickSubmitButton();
+        return new ProductListPage(driver);
     }
 }
