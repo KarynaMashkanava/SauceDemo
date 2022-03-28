@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -15,12 +16,24 @@ public class ProductListPage extends BasePage{
         super(driver);
     }
 
-    public void clickAddToCartButton() {
-        driver.findElement(addToCartButton).click();
+    @Override
+    public BasePage isPageLoaded() {
+        try {
+            driver.findElement(shoppingCartLink);
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("product list page not opened");
+        }
+        return this;
     }
 
-    public void clickShoppingCartLink() {
+    public ProductListPage clickAddToCartButton() {
+        driver.findElement(addToCartButton).click();
+        return this;
+    }
+
+    public CartPage clickShoppingCartLink() {
         driver.findElement(shoppingCartLink).click();
+        return new CartPage(driver);
     }
 
     public LinkedInPage openLinkedIn() {

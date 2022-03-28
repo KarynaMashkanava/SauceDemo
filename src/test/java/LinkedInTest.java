@@ -13,7 +13,7 @@ public class LinkedInTest extends BaseTest{
     @Test
     public void linkedInTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeUserName(Constants.USERNAME);
+        loginPage.typeUserName(Constants.STANDARD_USER);
         loginPage.typePassword(Constants.PASSWORD);
         loginPage.clickSubmitButton();
 
