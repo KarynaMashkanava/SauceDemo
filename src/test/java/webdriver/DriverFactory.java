@@ -11,6 +11,9 @@ public class DriverFactory {
             case FIREFOX:
                 driverManager = new FireFoxManager();
                 break;
+            case REMOTE_WEB_DRIVER:
+                driverManager = new RemoteWebDriverManager();
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
         }

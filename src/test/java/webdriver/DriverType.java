@@ -2,5 +2,6 @@ package webdriver;
 
 public enum DriverType {
     CHROME,
-    FIREFOX
+    FIREFOX,
+    REMOTE_WEB_DRIVER
 }
