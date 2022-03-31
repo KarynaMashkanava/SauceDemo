@@ -11,7 +11,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new DriverFactory().getDriverManager(DriverType.FIREFOX).createWebDriver();
+        driver = new DriverFactory().getDriverManager(DriverType.REMOTE_WEB_DRIVER).createWebDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(Constants.URL);
