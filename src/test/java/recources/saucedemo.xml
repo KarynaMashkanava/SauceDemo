@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo Regression Test" thread-count="2" parallel="tests">
+    <test name="login test">
+        <classes>
+            <class name="tests.LoginTest"> </class>
+            <parameter name="browser" value="CHROME"/>
+        </classes>
+    </test>
+    
+    <test name="linkedIn test">
+        <classes>
+            <class name="tests.LinkedInTest" />
+            <parameter name="browser" value="CHROME"/>
+        </classes>
+    </test>
+</suite>

@@ -1,8 +1,11 @@
+package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LinkedInPage;
 import pages.LoginPage;
 import pages.ProductListPage;
+import utils.Retry;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +13,7 @@ public class LinkedInTest extends BaseTest{
 
     private final String logoText = "LinkedIn";
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void linkedInTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeUserName(Constants.STANDARD_USER);
