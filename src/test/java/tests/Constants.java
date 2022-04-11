@@ -1,3 +1,5 @@
+package tests;
+
 public class Constants {
     public static final String URL = "https://www.saucedemo.com/";
     public static final String STANDARD_USER = "standard_user";
